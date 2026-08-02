@@ -1,0 +1,38 @@
+# Private internal app manifest for slack-cli (xoxp user-token path).
+# Create at https://api.slack.com/apps -> "Create New App" -> "From a manifest".
+# Install to the workspace, then copy the User OAuth Token (xoxp-...) into
+# `slack auth add <name>`.
+#
+# Primary configuration: least-privilege USER scopes — the CLI acts as the
+# installing member. The optional bot scopes below are only for deliberate
+# bot-owned automation; omit them unless needed.
+
+display_information:
+  name: slack-cli
+  description: Personal command-line access to this workspace
+  background_color: "#2c2d30"
+
+oauth_config:
+  scopes:
+    user:
+      - channels:read
+      - channels:history
+      - groups:read
+      - groups:history
+      - im:read
+      - im:history
+      - im:write        # open DM conversations for `message send @user`
+      - mpim:read
+      - mpim:history
+      - users:read
+      - chat:write
+      - search:read
+      - reactions:write
+    # bot:              # optional secondary mode
+    #   - channels:read
+    #   - chat:write
+
+settings:
+  org_deploy_enabled: false
+  socket_mode_enabled: false
+  token_rotation_enabled: false
